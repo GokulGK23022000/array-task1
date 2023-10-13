@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 task</title>
+</head>
+<body>
+    <script>
+
+// Array methods:
+// map:
+// 1.Given an array of temperatures in Celsius, create a new array with temperatures converted to Fahrenheit.
+let celsius=[40,12,45,10,35]
+    let fahrenheit=celsius.map(function(item){
+        let fahrenheit=(item*(9/5)+32)
+        return (fahrenheit+"FH")
+    })
+
+    console.log(fahrenheit);
+
+// 2.Create a program to capitalize the first letter of each word in an array of strings.
+let words=["sandhosh","is","a","good","boy"]
+    let capitalLetters=words.map(function(item,index){
+        return item[0].toUpperCase()+item.slice(1)
+    })
+    console.log(capitalLetters)
+// 3.Given an array of strings, create a new array that contains the lengths of each string.
+let stringWord=["front","end","development"]
+    let wordsLength=stringWord.map(function(item){
+        return item.length
+    })
+
+    console.log(wordsLength);
+
+// Filter:
+// 1.Filter an array of numbers to find prime number.
+let numbers=[7,9,5,13,4]
+    let primeNumbers=numbers.filter(function(item){
+        if(item<=1){
+            return false
+        }
+        for(let i=2;i<item;i++){
+            if(item%i==0){
+                return false
+            }
+        }
+        return true
+    })
+    console.log(primeNumbers);
+
+// 2.Given an array of objects representing books, filter the books published after the year 2000.
+const books = [
+            { 
+                title: "history of violence", 
+                year: 1990
+            },
+            { 
+                title: 'Think and Grow', 
+                year: 2010 
+            },
+            { 
+                title: 'Positivity', 
+                year: 1999
+            },
+            { 
+                title: 'Atomic habits',
+                year: 2032 
+                },
+            { 
+                title: 'Best friend',
+                year: 2023
+            }
+        ];
+        
+    let filteredBooks=books.filter(function(item){
+        if(item.year>2000){
+            return true
+        }
+    })
+    console.log(filteredBooks);
+
+
+
+
+
+
+// 3.Filter an array of strings to find palindromes.
+function palindromeString(item){
+        let reversedString=item.split('').reverse().join('')
+        if(item==reversedString){
+            return true
+        }
+    }
+    let words1=['nitin','mom','gokul','refer',]
+    console.log(words1.filter(palindromeString))
+
+// Reduce:
+// 1.Given an array of words, find the longest word.
+
+const words = ["Gokul", "Sandhosh", "Vijay", "Sivachandran", "Vijay"];
+
+function findlongestWord(word1, word2) {
+  if (word1.length > word2.length) {
+    return word1;
+  } else {
+    return word2;
+  }
+}
+
+const result = words.reduce(findlongestWord);
+
+console.log(result);
+
+
+// 2.Calculate the average of a list of test scores.
+function Average(marks) {
+  if (marks.length === 0) {
+    return 0; 
+  }
+  
+  const total = marks.reduce((accumulator, currentScore) => accumulator + currentScore, 0);
+  
+  return total / marks.length;
+}
+const testScores = [85, 92, 78, 90, 88];
+const average = Average(testScores);
+console.log("The average test score is: " + average);
+
+// 3.Find the maximum value in an array of numbers.
+function findMaxValue(numbers) {
+  const maxValue = numbers.reduce((max, currentNumber) => {
+    return Math.max(max, currentNumber);
+  }, numbers[0]);
+
+  return maxValue;
+}
+
+const numberArray = [14, 42, 8, 56, 31, 75, 22];
+const max = findMaxValue(numberArray);
+console.log("The maximum value is: " + max);
+
+// find:
+// 1.Given an array of objects representing books, find the book with the highest rating.
+
+var books = [
+            { 
+                title: "history of violence", 
+                rating: 1
+            },
+            { 
+                title: 'Think and Grow', 
+                rating: 8.5
+            },
+            { 
+                title: 'Positivity', 
+                rating: 9
+            },
+            { 
+                title: 'Atomic habits',
+                rating: 8
+                },
+            { 
+                title: 'Best friend',
+                rating: 8.2
+            }
+        ];
+        
+    let filteredBooks=books.find(function(item){
+        if(item.rating>5){
+            return true
+        }
+    })
+    console.log(filteredBooks);
+// 2.Find the first occurrence of a word containing 'apple' in an array of strings.
+const findapple = [
+  "I like banana",
+  "She ate an apples",
+  "Oranges are good too",
+  "The apple pie is delicious",
+];
+
+const Apple = findapple.find(str => str.includes('apple'));
+
+console.log(Apple);
+
+// 3.Find the first student with a GPA above 3.5 in an array of student objects.
+
+var Students = [
+            { 
+               Studens:"Gokul", 
+                GPA: 3.4
+            },
+            { 
+            Studens:"Vijay", 
+                GPA: 4.3
+            },
+            {   
+              Studens:"Ajith", 
+                GPA: 6
+            },
+            { 
+                Studens:"Rahul", 
+                GPA: 7.4
+                },
+            { 
+                 Studens:"Syed", 
+                GPA: 5
+            }
+        ];
+        
+    let studentsGpa=Students.find(function(item){
+        if(item.GPA>3.5){
+            return true
+        }
+    })
+    console.log(studentsGpa);
+
+// Includes,some&every:
+// 1.Check if all users in an array are adults (age 18 or older) using every().
+let validAge=[22,33,44,19,10];
+    let adultAge=function(item){
+        return (item>=18);
+    };
+    console.log(validAge.every(adultAge))
+// 2.Determine if any strings in an array contain more than 10 characters using some().
+let word=["Vijay","palindrome","mahendra singh dhoni"];
+    let aboveTen=function(item){
+        return(item.length>10);
+    }
+    console.log(word.some(aboveTen))
+
+// 3.Determine if an array of books includes a book with the title "Harry Potter" using the includes().
+const library = ["sharpness", 'be Positive','Harry Potter',"the dark"]
+    console.log(library.includes('Harry Potter'))
+
+    </script>
+</body>
+</html>
